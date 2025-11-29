@@ -1,0 +1,744 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #12012e; /* Fundo principal escuro */
+    color: #f0f0f0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: #1a0245; /* Fundo do cabeçalho */
+    padding: 15px 0; /* O padding lateral não está aqui */
+    border-bottom: 1px solid #3c0ba0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 💥 CORREÇÃO AGRESSIVA: Zera o padding lateral herdado do .container */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.logo-text {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #a855f7; /* Roxo vibrante */
+}
+
+/* 💥 NOVO SELETOR: Adiciona o espaçamento (respiro) diretamente no logo e nos botões */
+/* Isso garante que o logo use o padding do <h1>/Link e não do .container */
+.header-container .logo-text,
+.header-container .header-nav {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* O padding dos botões de navegação precisa ser compensado */
+.header-container .header-nav {
+    /* O padding-right de 20px foi adicionado acima */
+    padding-left: 0; /* Remove o padding extra da esquerda na nav */
+}
+
+.header-nav .btn {
+    margin-left: 10px;
+}
+
+.btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.btn-primary {
+    background-color: #8b5cf6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #7c3aed;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 1px solid #8b5cf6;
+}
+
+.btn-secondary:hover {
+    background-color: #8b5cf6;
+    color: white;
+}
+
+/* --- ESTILOS DO MENU DE PERFIL --- */
+
+.profile-menu-wrapper {
+    position: relative; 
+    display: inline-block;
+}
+
+.btn-profile {
+    background-color: #8b5cf6; 
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex; 
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-profile:hover {
+    background-color: #7c3aed;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 100%; 
+    right: 0; 
+    z-index: 20; 
+    background-color: #1f0352; 
+    border: 1px solid #3c0ba0; 
+    border-radius: 6px;
+    min-width: 180px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7); 
+    display: none; 
+    padding: 5px 0; 
+}
+
+.profile-menu-wrapper:hover .profile-dropdown {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #f0f0f0; 
+    font-size: 0.95rem;
+    transition: background-color 0.2s, color 0.2s;
+    box-sizing: border-box; 
+    width: 100%; 
+    text-align: left;
+    background: transparent; 
+    border: none;
+}
+
+.dropdown-item:hover {
+    background-color: #2a0b68; 
+    color: white;
+}
+
+.dropdown-separator {
+    border: none;
+    height: 1px;
+    background-color: #3c0ba0; 
+    margin: 5px 0;
+}
+
+.btn-logout {
+    color: #ff7777; 
+    font-weight: bold;
+    text-align: left;
+    width: 100%; 
+    background: transparent;
+}
+
+.btn-logout:hover {
+    background-color: #2a0b68;
+    color: #ff5757;
+}
+
+/* --- CONTINUAÇÃO DOS ESTILOS ORIGINAIS --- */
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 0;
+    background-color: #1f0352;
+    border-radius: 8px;
+    margin-top: 40px;
+    padding: 40px;
+}
+
+.hero-logo img {
+    max-width: 150px;
+}
+
+.hero-content h2 {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.popular-games, .recent-posts {
+    margin-top: 60px;
+}
+
+
+.popular-games h3, .recent-posts h3 {
+    text-align: center;
+    font-size: 1.9rem;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3c0ba0;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.game-card {
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+
+.game-card:hover img {
+    transform: scale(1.05);
+}
+
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.post-item {
+    background-color: #1f0352;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 3px solid #8b5cf6;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.post-item:hover {
+    background-color: #2a0b68;
+    border-left-color: #a855f7;
+    transform: translateX(5px);
+}
+
+.footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px 0;
+    color: #a0aec0;
+    border-top: 1px solid #3c0ba0;
+}
+
+
+/* --- ESTILOS ESPECÍFICOS DA PÁGINA DE PERFIL --- */
+
+.container.profile-page-layout { 
+    display: grid;
+    grid-template-columns: 280px 1fr 280px; 
+    gap: 30px; 
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+/* --- CORREÇÃO DE LAYOUT E USABILIDADE --- */
+
+/* 💥 CORREÇÃO 1: Botão Editar Perfil */
+.btn-edit-profile {
+    display: block; /* Ocupa a largura total */
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px; /* Cria espaço entre o botão e o próximo elemento (PLATAFORMAS) */
+}
+
+
+/* 💥 CORREÇÃO 2: Estilo dos Ícones das Plataformas */
+.platform-item {
+    background-color: #33334d; 
+    color: #f0f0f0;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    
+    /* Alinhamento Horizontal do Ícone e Texto */
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    
+    border-left: 5px solid gray; 
+}
+
+.platform-icon {
+    width: 24px; /* Tamanho do Ícone */
+    height: 24px;
+    object-fit: contain;
+}
+
+/* --- COLUNA LATERAL ESQUERDA (USER CARD) --- */
+
+.profile-sidebar {
+    background-color: #1f0352; 
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content; 
+}
+
+/* Imagem de Perfil */
+.profile-img-placeholder {
+    width: 150px;
+    height: 150px;
+    background-color: #3c0ba0; 
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    border: 3px solid #8b5cf6;
+}
+
+.user-card h3 {
+    text-align: center;
+    margin: 0 0 5px;
+    font-size: 1.5rem;
+}
+
+.user-location {
+    text-align: center;
+    color: #a0aec0;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Grid de Stats */
+.user-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: center;
+    border: 1px solid #3c0ba0;
+    border-radius: 6px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #a855f7;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #a0aec0;
+}
+
+/* Plataformas */
+.platforms-section h4 {
+    color: #8b5cf6;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.platforms-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.platform-item.epic { border-left-color: #55a8f7; }
+.platform-item.xbox { border-left-color: #107c10; }
+.platform-item.ps { border-left-color: #0070d1; }
+.platform-item.steam { border-left-color: #171a21; }
+
+.btn-edit-profile {
+    width: 100%;
+    text-align: center;
+}
+
+/* --- COLUNA CENTRAL (BIBLIOTECA & ATIVIDADES) --- */
+/* Container da biblioteca de jogos */
+.library-section .games-grid-perfil {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+/* Cada card da biblioteca */
+.library-section .games-grid-perfil .game-card-perfil {
+    position: relative; /* Apenas o card controla o posicionamento */
+    height: 150px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: flex-end; /* nome do jogo na parte inferior */
+}
+
+/* Hover do card */
+.library-section .games-grid-perfil .game-card-perfil:hover {
+    border-color: #a855f7;
+    background-color: #3d0e7a;
+}
+
+/* Imagem do card */
+.library-section .games-grid-perfil .game-card-perfil img.game-image {
+    position: absolute; /* só dentro do card */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.3s;
+}
+
+/* Zoom da imagem no hover */
+.library-section .games-grid-perfil .game-card-perfil:hover img.game-image {
+    transform: scale(1.05);
+}
+
+/* Nome do jogo */
+.library-section .games-grid-perfil .game-card-perfil .game-name {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-weight: bold;
+    padding: 5px 0;
+    font-size: 0.9rem;
+}
+
+
+/* Atividades */
+.activity-item {
+    background-color: #1f0352;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border-left: 5px solid #3c0ba0;
+    transition: border-left-color 0.2s;
+}
+.activity-item.activity-new {
+    border-left-color: #8b5cf6; 
+}
+
+.activity-title {
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+.activity-details {
+    color: #a0aec0;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.btn-full-width {
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* --- COLUNA LATERAL DIREITA (AMIGOS E CONQUISTAS) --- */
+
+.profile-sidebar-right {
+    background-color: #1f0352; 
+    padding: 20px; 
+    border-radius: 8px;
+    height: fit-content; 
+}
+
+.friends-section h4, .achievements-section h4 {
+    color: #8b5cf6;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #3c0ba0;
+}
+
+.friends-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+    color: #f0f0f0;
+}
+
+.achievements-icons {
+    font-size: 2rem;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.achievement-box-placeholder {
+    height: 150px;
+    background-color: #1f0352;
+    border: 1px dashed #3c0ba0;
+    border-radius: 6px;
+}
+
+/* --- ESTILOS ESPECÍFICOS DA PÁGINA DE CONFIGURAÇÕES --- */
+
+.settings-title {
+    font-size: 2.2rem;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    color: #a855f7;
+    text-align: center;
+    border-bottom: 1px solid #3c0ba0;
+    padding-bottom: 15px;
+}
+
+/* Layout de 2 Colunas (Menu e Conteúdo) */
+.settings-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr; /* 200px para o menu lateral, o resto para o conteúdo */
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Menu Lateral (Sidebar) */
+.settings-sidebar {
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+}
+
+.settings-tab-btn {
+    text-align: left;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: transparent;
+    color: #f0f0f0;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.settings-tab-btn:hover {
+    background-color: #1f0352; /* Fundo roxo escuro no hover */
+    border-left-color: #8b5cf6;
+}
+
+.settings-tab-btn.active {
+    background-color: #1f0352;
+    border-left-color: #a855f7; /* Roxo vibrante para aba ativa */
+    font-weight: bold;
+}
+
+.settings-tab-back {
+    margin-top: 20px;
+    color: #a0aec0 !important;
+    text-decoration: none;
+}
+
+/* Conteúdo da Seção */
+.settings-content-main {
+    padding: 20px;
+}
+
+.settings-content-card {
+    background-color: #1f0352;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.settings-content-card h3 {
+    color: #a855f7;
+    margin-top: 0;
+    border-bottom: 1px solid #3c0ba0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.setting-description {
+    color: #a0aec0;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* Estilos de Formulário */
+.settings-form .form-group {
+    margin-bottom: 20px;
+}
+
+.settings-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.settings-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #3c0ba0;
+    background-color: #12012e; /* Fundo do corpo */
+    color: #f0f0f0;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.settings-form input:focus {
+    border-color: #a855f7;
+    outline: none;
+}
+
+/* src/components/Modal.css */
+
+/* 1. O Fundo Escuro (Overlay) */
+.modal-overlay {
+    position: fixed; /* Fixa o elemento na tela */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+/* 2. O Conteúdo da Caixa (Modal) */
+.modal-content {
+    background: #1e1e2d; /* Cor de fundo escura, similar ao seu tema */
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    color: #f0f0f0; /* Texto claro */
+    border: 1px solid #7c4dff; /* Borda roxa para combinar com o tema */
+    max-height: 80vh; /* Limita a altura */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
+}
+
+/* 3. Botão de Fechar */
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #f0f0f0;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+}
+
+.modal-close-button:hover {
+    color: #7c4dff; /* Roxo no hover */
+}
+
+/* Estilos de Conteúdo */
+.modal-title {
+    margin-top: 0;
+    color: #a0a0ff; /* Título em destaque */
+}
+
+.modal-author {
+    font-size: 0.9em;
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+/* Adicione isso ao seu App.css */
+
+.login-card {
+    /* Mantenha o estilo do seu cartão de login (background, max-width, etc) */
+    text-align: center;
+    padding: 30px;
+}
+
+.login-title {
+    color: #a855f7;
+    margin-bottom: 25px;
+}
+
+.forgot-password-link {
+    background: none;
+    border: none;
+    color: #8b5cf6;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin: 15px 0;
+    padding: 0;
+    display: block; /* Garante que ocupe a linha inteira */
+    width: 100%;
+    text-align: center;
+}
+
+.separator {
+    color: #a0aec0;
+    margin: 20px 0;
+    font-size: 0.85rem;
+}
+
+.social-login-group button {
+    margin-bottom: 12px;
+}
+
+.btn-social {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    font-weight: bold;
+}
+
+/* Estilos de cor para as plataformas */
+.btn-discord {
+    background-color: #5865F2;
+    color: white;
+}
+
+.btn-google {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn-steam {
+    background-color: #171A21;
+    color: white;
+}
